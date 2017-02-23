@@ -17,6 +17,7 @@ public class Retiro extends Transaccion{
         // int monto, String necesidad_de_billetes
         // Ejemplo
         //String Necesidad = "{500:5,100:2,20:1}" // No espacios
+        
     }
     
 }

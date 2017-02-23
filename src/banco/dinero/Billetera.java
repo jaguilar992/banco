@@ -63,7 +63,7 @@ public class Billetera {
     }
     
     public PILA desglose(int monto){ // CREA Billetes De forma desglosada
-        // Obtiene una PILA de Billetes
+        // Retorna una PILA de Billetes
         //  con el numero de Billetes Optimo que suman monto
         // Ejemplo: Saldo: 789
         // 500 , 100, 100, 50, 20, 10, 5, 2, 2
@@ -80,8 +80,27 @@ public class Billetera {
         return pila; // Regresa una PILA con los Billetes
     }
     
+    public String desglose_str(int monto){ // CREA Billetes De forma desglosada
+        // Retorna una cadena de Billetes {den_1:cant_1,den_2:cant_2, ... , den_n:cant_n}
+        //  con el numero de Billetes Optimo que suman monto
+        // Ejemplo: Saldo: 789
+        // {500:1,100:2,20:1,10:1,5:1,2:2}
+        String rest="{";
+        for (int i = this.denom.length - 1; i >= 0; i--) {
+            if (monto >= denom[i]) {
+                int cantb = (monto / denom[i]);
+                rest+=(denom[i]+":"+cantb+",");
+                monto = monto % denom[i];
+            }
+        }
+        return rest+"}"; // Regresa una PILA con los Billetes
+    }
+    
     public PILA obtener(int monto){
-        return null;
+        // Obtiene monto de la billetera por desglose (PILA de Billetes)
+        // null si no es posible
+        PILA obtenida = this.obtener(this.desglose_str(monto));
+        return obtenida;
     }
     
     public PILA obtener(String str){ 
@@ -100,13 +119,15 @@ public class Billetera {
             int cant = Integer.parseInt(pair.split(":")[1]);
             try{ 
                 PILA c = this.pilas(den);
-                if (!c.VACIA()) {
-                    for (int i = 0; i < cant; i++) {
-                        obtenido.METE((Billete)c.TOPE());
+                for (int i = 0; i < cant; i++) {
+                    if (!c.VACIA()) {
+                        obtenido.METE((Billete) c.TOPE());
+                        c.SACA();
+                    }else{
+                        System.out.println("No hay billetes de: "+den);
+                        this.guardar(obtenido);
+                        return null; // Devuelve null si al menos una de las pilas a usar está vacía
                     }
-                }else{
-                    System.out.println("No hay billetes de: "+den);
-                    return null; // Devuelve null si al menos una de las pilas a usar está vacía
                 }
             }catch(NullPointerException e){ 
             // Ignorar Pilas nulas, valores no permitidos en this.denom

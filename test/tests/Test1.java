@@ -45,9 +45,11 @@ public class Test1 {
        //nuevos.METE(new Billete(3));
        //wallet.guardar(nuevos);
         
-        wallet.llenar(10000);
-       System.out.println(wallet);
-        System.out.println(Billete.contar(wallet.obtener("{500:2,100:6}")));
+        wallet.llenar(1000);
+       //System.out.println(wallet);
+        //System.out.println(wallet.obtener("{500:1}"));
+        wallet.obtener(1000);
+        System.out.println(wallet);
           
     }
 }

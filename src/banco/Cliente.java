@@ -5,10 +5,24 @@
  */
 package banco;
 
+import banco.dinero.Billetera;
+import banco.transaccion.Transaccion;
+
 /**
  *
  * @author jaguilar992
  */
 public class Cliente {
+    private final int init;
+    public Billetera wallet = new Billetera();
+    Transaccion t;
     
+    public Cliente(){
+        this.init = Util.randint(500, 50000);
+        wallet.llenar(init,Util.randbool());
+    };
+    
+    public int dinero(){
+        return wallet.get_saldo();
+    }
 }

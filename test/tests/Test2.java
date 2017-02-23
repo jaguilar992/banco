@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package tests;
-// REGEXP
+// REGEXP y RANDOM
 
 import banco.dinero.Billetera;
 
@@ -19,6 +19,8 @@ public class Test2 {
         String a = "{500: 5100:    2,20:  1}";
         a=a.replaceAll("\\s", "");
         System.out.println(a);
+        
+        System.out.println(Math.rint(3.5));
     }
     
 }
