@@ -124,7 +124,7 @@ public class Billetera {
                         obtenido.METE((Billete) c.TOPE());
                         c.SACA();
                     }else{
-                        System.out.println("No hay billetes de: "+den);
+                        System.out.println("No hay "+cant+" billetes de: "+den);
                         this.guardar(obtenido);
                         return null; // Devuelve null si al menos una de las pilas a usar está vacía
                     }
@@ -154,17 +154,21 @@ public class Billetera {
     
     public void guardar(PILA nuevos){
         // Recibe una PILA de Billetes(Variada) y los guarda en las pilas correspondientes
-        while (!nuevos.VACIA()) {
-            Billete billete_tope = (Billete)nuevos.TOPE(); // Obtiene Billete en el tope
-            int valor = billete_tope.get_valor();
-            PILA recip = this.pilas(valor);
-            if (recip!=null) {
-                nuevos.SACA(); // Saca el billete de la PILA y luego
-                recip.METE(billete_tope);// Guarda el billete en la que corresponde.
-            }else{
-                System.out.println("Se detectó Billete Falso: " + billete_tope);
-                nuevos.SACA(); // Sacar billete falso xD
+        try{
+            while (!nuevos.VACIA()) {
+                Billete billete_tope = (Billete) nuevos.TOPE(); // Obtiene Billete en el tope
+                int valor = billete_tope.get_valor();
+                PILA recip = this.pilas(valor);
+                if (recip != null) {
+                    nuevos.SACA(); // Saca el billete de la PILA y luego
+                    recip.METE(billete_tope);// Guarda el billete en la que corresponde.
+                } else {
+                    System.out.println("Se detectó Billete Falso: " + billete_tope);
+                    nuevos.SACA(); // Sacar billete falso xD
+                }
             }
+        }catch(NullPointerException e){
+            System.out.println("PILA a guardar en billetera está VACIA");
         }
     }
     

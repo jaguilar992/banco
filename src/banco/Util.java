@@ -12,14 +12,23 @@ import java.util.Random;
  * @author jaguilar992
  */
 public class Util {
-    public static Random r = new Random();
+    private static Random r = new Random();
     
     public static int randint(int l,int h){
         return r.nextInt(h-l+1) + l;
     }
     
+    public static int randint(int h){
+        return Util.randint(0, h);
+    }
+    
+    
     public static boolean randbool(){
         return Util.randint(0, 1)==1;
+    }
+    
+    public static char randchar(char[] array){
+        return array[Util.randint(array.length-1)];
     }
     
 }

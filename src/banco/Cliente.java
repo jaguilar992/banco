@@ -14,15 +14,24 @@ import banco.transaccion.Transaccion;
  */
 public class Cliente {
     private final int init;
-    public Billetera wallet = new Billetera();
+    private Billetera wallet = new Billetera();
     Transaccion t;
     
     public Cliente(){
         this.init = Util.randint(500, 50000);
         wallet.llenar(init,Util.randbool());
+        t = new Transaccion(Util.randchar(Transaccion.TRANS));
     };
     
     public int dinero(){
         return wallet.get_saldo();
+    }
+    
+    public Billetera billet(){
+        return this.wallet;
+    }
+    
+    public Transaccion transaccion(){
+        return this.t;
     }
 }
