@@ -124,7 +124,8 @@ public class Billetera {
                         obtenido.METE((Billete) c.TOPE());
                         c.SACA();
                     }else{
-                        System.out.println("No hay "+cant+" billetes de: "+den);
+                        //System.out.println(str);
+                        //System.out.println("No hay "+cant+" billetes de: "+den);
                         this.guardar(obtenido);
                         return null; // Devuelve null si al menos una de las pilas a usar está vacía
                     }

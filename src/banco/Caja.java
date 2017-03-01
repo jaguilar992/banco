@@ -15,18 +15,19 @@ import tda.COLA;
  */
 public class Caja {
     
-    public Billetera wallet;
+    private Billetera wallet = new Billetera();
     private final int fondo = 1000000;
-    private COLA clientes;
-    private final int lim_cola=20;
+    private COLA clientes = new COLA();
+    private static final int LIMIT_COLA=20;
     public static final float DELAY_MIN=10;
     public static final float DELAY_MAX=30;
+    private int ID;
     
     public Caja(){
         wallet.llenar(fondo);
     }
     public boolean agrega_cliente(Cliente a){
-         if (lim_cola < 20) {
+         if (this.cuenta_cola()<Caja.LIMIT_COLA) {
             clientes.PON_EN_COLA(a);
             return true;
          }else{
@@ -40,8 +41,11 @@ public class Caja {
             case 'D':{
             }
             break; case 'R':{
+                // Detectar si se necesita prestamo entre cajas
+                // En el peor de los casos, si no hay fondos en las cajas, contar cliente no atendido.
             }
             break; case 'C':{
+                // Detectar si se necesita prestamo entre cajas
             }
             break; default:
             break;
@@ -51,4 +55,24 @@ public class Caja {
     public Billetera billet(){
         return this.wallet;
     }
+    
+    public int cuenta_cola(){
+        return this.clientes.CUENTA();
+    }
+
+    /**
+     * @return the ID
+     */
+    public int getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    
+    
 }

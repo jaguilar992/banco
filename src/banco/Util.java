@@ -5,6 +5,9 @@
  */
 package banco;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -31,4 +34,22 @@ public class Util {
         return array[Util.randint(array.length-1)];
     }
     
+    public static float randrate(){
+        return r.nextFloat();
+    }
+    
+    public static int[] rand_shuffle(int[] array) {
+        List<Integer> list = new ArrayList<>();
+        int[] new_array=new int[array.length];
+        for (int i : array) {
+            list.add(i);
+        }
+
+        Collections.shuffle(list);
+
+        for (int i = 0; i < array.length; i++) {
+            new_array[i] = list.get(i);
+        }    
+        return new_array;
+    }
 }
