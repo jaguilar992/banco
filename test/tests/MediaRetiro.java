@@ -30,7 +30,7 @@ public class MediaRetiro {
             sum2+=n;
             for (int j = 1; j <= n; j++) {
                 Cliente c = new Cliente();
-                c.set_retiro();
+                //c.set_retiro();
                 //System.out.println(j+" "+c.transaccion().getNecesidad()+": "+Billete.contar(c.transaccion().getNecesidad()));
                 if (banco.obtener(c.transaccion().getMonto())==null) {
               //      System.out.println("Falla at "+j);

@@ -15,13 +15,14 @@ import tda.COLA;
  */
 public class Caja {
     
-    private Billetera wallet = new Billetera();
+    private final Billetera wallet = new Billetera();
     private final int fondo = 1000000;
-    private COLA clientes = new COLA();
+    private final COLA clientes = new COLA();
     private static final int LIMIT_COLA=20;
-    public static final float DELAY_MIN=10;
-    public static final float DELAY_MAX=30;
+    public static final float DELAY_MIN=9.6f;
+    public static final float DELAY_MAX=4.8f;
     private int ID;
+    private boolean abierto;
     
     public Caja(){
         wallet.llenar(fondo);
@@ -34,21 +35,25 @@ public class Caja {
              return false;
          }
      }
-    public void atiende_cliente(Cliente a){
+    public boolean atiende_cliente(Cliente a){
         Cliente client = (Cliente)clientes.FRENTE();
         Transaccion next = client.transaccion();
         switch(next.tipo()){
             case 'D':{
+                wallet.guardar(next.getDinero());
+                return true;
             }
-            break; case 'R':{
+            case 'R':{
                 // Detectar si se necesita prestamo entre cajas
                 // En el peor de los casos, si no hay fondos en las cajas, contar cliente no atendido.
+                return true;
             }
-            break; case 'C':{
+            case 'C':{
                 // Detectar si se necesita prestamo entre cajas
+                return true;
             }
-            break; default:
-            break;
+            default:
+                return false;
         }
     }
       
@@ -74,5 +79,16 @@ public class Caja {
         this.ID = ID;
     }
     
+    public void abrir() {
+        this.abierto = true;
+    }
+
+    public void cerrar() {
+        this.abierto = false;
+    }
+
+    public boolean is_abierto() {
+        return this.abierto;
+    }
     
 }

@@ -138,21 +138,6 @@ public class Billetera {
         return obtenido;
     }
     
-    public void guardar(Billete[] billetes){ 
-        // Recibe un arreglo de Billetes y los guarda en las pilas correspondientes
-        for (Billete billete : billetes) { 
-            if (billete!=null) { // Analiza billete
-                int valor = billete.get_valor();
-                PILA recip = this.pilas(valor);
-                if (recip != null) {
-                    recip.METE(billete); // Guardar billete
-                } else {
-                    System.out.println("Se detectó Billete Falso: " + billete);
-                }
-            }
-        }
-    }
-    
     public void guardar(PILA nuevos){
         // Recibe una PILA de Billetes(Variada) y los guarda en las pilas correspondientes
         try{
@@ -190,8 +175,8 @@ public class Billetera {
     public String toString() { // Impresion de Billetera
         String m = "Billetera: "+this.get_saldo()+"{";
         for (int key : denom) {
-            m+=("\n"+key+":"+this.pilas(key).CUENTA()+",");
+            m+=("  "+key+":"+this.pilas(key).CUENTA()+",");
         }
-        return m+"\n}";
+        return m+"}";
     }
 }

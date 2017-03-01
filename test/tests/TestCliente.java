@@ -8,6 +8,7 @@ package tests;
 import banco.Caja;
 import banco.Cliente;
 import banco.Util;
+import banco.dinero.Billete;
 import banco.dinero.Billetera;
 
 /**
@@ -35,13 +36,14 @@ public class TestCliente {
         String k = "{500:2,100:3}{500:2,100:2,50:1}";
         //System.out.println(banco.obtener(k));
         
-        //System.out.println(Antonio.billet());
-//        Antonio.set_cambio();
+        System.out.println(Antonio.billet());
+       // Antonio.set_deposito();
+        
         //System.out.println(Antonio.transaccion().getNecesidad());
         
         //System.out.println(Antonio.transaccion().getMonto());
         //System.out.println(Antonio.transaccion().getDinero());
-        
+        //System.out.println(Antonio.billet());
         int n = Util.randint(40,160);
         
 //        for (int i = 0; i < 150; i++) {
@@ -58,11 +60,11 @@ public class TestCliente {
         //Antonio.set_deposito();
         //System.out.println(Antonio.transaccion().getDinero());
         //System.out.println(Antonio.transaccion().getMonto());
-        
+//        
         for (int i = 0; i < 1000; i++) {
             Cliente c = new Cliente();
-            c.set_cambio();
-            System.out.println();
+            System.out.println(c.transaccion().tipo());
         }
+
     }
 }

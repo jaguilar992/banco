@@ -71,8 +71,8 @@ public class LISTA{
 	}
 	
 	public void SUPRIME(int pos){
-	    if(pos>=this.PRIMERO() && pos<=this.FIN()){ // Verificar que suprimir sea valida
-		for (int i = pos; i < this.FIN(); i++) {
+	    if(pos>=this.PRIMERO() && pos<this.FIN()){ // Verificar que suprimir sea valida
+		for (int i = pos; i < this.ANTERIOR(this.FIN()); i++) {
 			arrLista[i]=getArrLista()[i+1]; // Corre los elementos hacia atrás, desde la pos+1 hasta fin
 		    }
 		    arrLista[this.ANTERIOR(this.FIN())]=null; // Resetea la ultima cubeta a null
