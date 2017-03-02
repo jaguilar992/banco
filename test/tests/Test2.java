@@ -30,9 +30,10 @@ public class Test2 {
         //System.out.println(Util.randchar(list));
         Cliente n = new Cliente();
         System.out.println(n.transaccion().tipo());
-        System.out.println(n.transaccion().getMonto());
-        System.out.println(n.transaccion().getNecesidad());
-        System.out.println(n.billet());
+       // System.out.println(n.transaccion().getMonto());
+        //System.out.println(n.transaccion().getNecesidad());
+      //  System.out.println(n.billet());
+        System.out.println(Util.randint(0, 0));
     }
     
 }

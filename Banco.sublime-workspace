@@ -1,0 +1,299 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"caja",
+				"cajas"
+			],
+			[
+				"caj",
+				"caja_i"
+			],
+			[
+				"if",
+				"if\tif"
+			],
+			[
+				"cja",
+				"caja_i"
+			],
+			[
+				"ca",
+				"cajas"
+			],
+			[
+				"CUE",
+				"CUENTA_COLA"
+			],
+			[
+				"fo",
+				"for\tfor"
+			],
+			[
+				"U",
+				"Util"
+			],
+			[
+				"ran",
+				"rand_i"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "in",
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Repository"
+			],
+			[
+				"bui",
+				"Build: Cancel"
+			],
+			[
+				"java",
+				"Javatar: Builds..."
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"INS",
+				"Package Control: Install Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Repository"
+			],
+			[
+				"mate",
+				"Material Theme: Activate theme"
+			]
+		],
+		"width": 446.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/banco",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/tda",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/test",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/test/tests"
+	],
+	"file_history":
+	[
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/test/tests/Test2.java",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/banco/Util.java",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/tda/LISTA.java",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/tda/COLA.java",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/banco/Caja.java",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/banco/Registro.java",
+		"/E/Sublime Text/Data/Packages/User/Javatar.sublime-settings",
+		"/E/Sublime Text/Data/Packages/User/JavaSE.sublime-build",
+		"/E/Sublime Text/Data/Packages/Javatar/Javatar.sublime-settings",
+		"/E/Dropbox04/Dropbox/Proyecto1 (Banco)/src/banco/Cliente.java",
+		"/E/Package Control Messages2",
+		"/E/Package Control Messages",
+		"/D/IBU/Banco/src/banco/Util.java",
+		"/D/IBU/Banco/src/banco/Cliente.java",
+		"/D/Sublime Text/Data/Packages/Javatar/Javatar.sublime-settings",
+		"/D/Sublime Text/Data/Packages/User/Javatar.sublime-settings"
+	],
+	"find":
+	{
+		"height": 70.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"crea_cliente",
+			":",
+			"billetes",
+			"\\d{4}",
+			":",
+			"en billetes",
+			"Falla at ",
+			"1",
+			":",
+			",",
+			"denom_change",
+			"randint",
+			"disp",
+			"rand_i",
+			"System"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "E:\\Dropbox04\\Dropbox\\Proyecto1 (Banco)"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 120.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"lis",
+				"src\\tda\\LISTA.java"
+			],
+			[
+				"uti",
+				"src\\banco\\Util.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 234.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

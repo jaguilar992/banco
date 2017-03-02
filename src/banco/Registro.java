@@ -15,14 +15,17 @@ import tda.LISTA;
 public class Registro {
     private static  int clientes_no; // Contador de clientes no atendidos desde entrada.
     private static int clientes_no_caja; // Contador de clientes no atendidos desde la caja.
-    public static final float DELAY_MIN = 1f;
-    public static final float DELAY_MAX = 5f;
+    public static final float DELAY_MIN = 2f; // MINUTOS
+    public static final float DELAY_MAX = 5f; // MINUTOS
     private final LISTA cajas = new LISTA();
     private boolean abierto;
     
     public Registro(){}
     
-    public void no_atendido(String necesidad, Transaccion t){
+    public void atendido(Transaccion t){
+    }
+    
+    public void no_atendido(Transaccion t){
         Registro.clientes_no_caja++;
     }
     
@@ -30,13 +33,26 @@ public class Registro {
         Registro.clientes_no++;
     }
     
-    public Cliente crea_cliente(){
+    public Cliente nuevo_cliente(){
         return new Cliente();
     }
     
-    public boolean cliente_a_caja(Cliente c){
-        int n = this.cajas.ANTERIOR(this.cajas.FIN());
-        return false;
+    public boolean cliente_a_caja(Cliente c){ // Manda cliente c a una de las cajas, para posible atencion
+        int espera=0;
+        int n = this.cajas.FIN(); // Tamaño de la lista de cajas
+        int caja_i, cuenta_i; // Caja seleccionada para agregar Cliente c (Aleatoriamente)
+        do{
+            caja_i = Util.randint(n-1); // Random
+            espera++;
+            cuenta_i = ((Caja)cajas.RECUPERA(caja_i)).cuenta_cola();
+        }while(cuenta_i>=20 && espera<10); // Revisará 10 cajas aleatoriamente antes de desistir
+
+        if (espera>10) { // Se alcanzo limite de espera, el cliente no se atenderá en cola
+            return false;
+        }else{
+            ((Caja)cajas.RECUPERA(caja_i)).agrega_cliente(c); // Agregra cliente a la caja i
+            return true;
+        }
     }
     
     public void abrir(){
@@ -49,6 +65,18 @@ public class Registro {
     
     public boolean is_abierto(){
         return this.abierto;
+    }
+
+    public void enlaza_caja(Caja caja){
+        this.cajas.INSERTA(caja,this.cajas.FIN());
+    }
+    
+    public LISTA cajas(){
+        return this.cajas;
+    }
+    
+    public Caja caja_i(int i){
+        return (Caja)this.cajas.RECUPERA(i);
     }
 }
 
