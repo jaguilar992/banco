@@ -22,10 +22,10 @@ public class Registro {
     
     public Registro(){}
     
-    public void atendido(Transaccion t){
+    public synchronized void atendido(Transaccion t){
     }
     
-    public void no_atendido(Transaccion t){
+    public synchronized void no_atendido(Transaccion t){
         Registro.clientes_no_caja++;
     }
     
@@ -39,15 +39,18 @@ public class Registro {
     
     public boolean cliente_a_caja(Cliente c){ // Manda cliente c a una de las cajas, para posible atencion
         int espera=0;
+        int WAIT = 20;
         int n = this.cajas.FIN(); // Tamaño de la lista de cajas
         int caja_i, cuenta_i; // Caja seleccionada para agregar Cliente c (Aleatoriamente)
         do{
             caja_i = Util.randint(n-1); // Random
             espera++;
             cuenta_i = ((Caja)cajas.RECUPERA(caja_i)).cuenta_cola();
-        }while(cuenta_i>=20 && espera<10); // Revisará 10 cajas aleatoriamente antes de desistir
+        }while(cuenta_i>=20 && espera<WAIT); 
+        // Revisará WAIT veces las cajas (repeticiones) aleatoriamente antes de desistir
+        // Ya que podria haber liberacion de algun cupo
 
-        if (espera>10) { // Se alcanzo limite de espera, el cliente no se atenderá en cola
+        if (espera>=WAIT) { // Se alcanzo limite de espera, el cliente no se atenderá en cola
             return false;
         }else{
             ((Caja)cajas.RECUPERA(caja_i)).agrega_cliente(c); // Agregra cliente a la caja i

@@ -23,7 +23,7 @@ public class Cliente {
     public Cliente(){
         this.init = Util.randint(500, 50000);
         wallet.llenar(init);
-        System.out.println(wallet);
+        //System.out.println(wallet);
         trans = new Transaccion(Util.randchar(Transaccion.TRANS));
         switch (trans.tipo()) {
                 case 'D':{
