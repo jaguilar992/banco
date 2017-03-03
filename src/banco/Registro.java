@@ -37,7 +37,7 @@ public class Registro {
         return new Cliente();
     }
     
-    public boolean cliente_a_caja(Cliente c){ // Manda cliente c a una de las cajas, para posible atencion
+    public synchronized boolean cliente_a_caja(Cliente c){ // Manda cliente c a una de las cajas, para posible atencion
         int espera=0;
         int WAIT = 20;
         int n = this.cajas.FIN(); // Tamaño de la lista de cajas
@@ -62,19 +62,20 @@ public class Registro {
         this.abierto=true;
     }
     
-    public  void cerrar(){
+    public void cerrar(){
         this.abierto=false;
     }
     
-    public boolean is_abierto(){
+    public synchronized boolean is_abierto(){
         return this.abierto;
     }
 
     public void enlaza_caja(Caja caja){
+        caja.setControl(this);
         this.cajas.INSERTA(caja,this.cajas.FIN());
     }
     
-    public LISTA cajas(){
+    public synchronized LISTA cajas(){
         return this.cajas;
     }
     

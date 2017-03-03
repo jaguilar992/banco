@@ -96,14 +96,14 @@ public class Billetera {
         return rest+"}"; // Regresa una PILA con los Billetes
     }
     
-    public PILA obtener(int monto){
+    public synchronized PILA obtener(int monto){
         // Obtiene monto de la billetera por desglose (PILA de Billetes)
         // null si no es posible
         PILA obtenida = this.obtener(this.desglose_str(monto));
         return obtenida;
     }
     
-    public PILA obtener(String str){ 
+    public synchronized PILA obtener(String str){ 
         // Recibe una cadena de la forma 
         //{den_1:cant_1,den_2:cant_2, ... , den_n:cant_n}
         // Devuelve una PILA de Billetes, segun se pide
@@ -138,7 +138,7 @@ public class Billetera {
         return obtenido;
     }
     
-    public void guardar(PILA nuevos){
+    public synchronized void guardar(PILA nuevos){
         // Recibe una PILA de Billetes(Variada) y los guarda en las pilas correspondientes
         try{
             while (!nuevos.VACIA()) {
@@ -158,7 +158,7 @@ public class Billetera {
         }
     }
     
-    public PILA pilas(int i){ // Acceso a la PILA de Billetes con denominacion i
+    public synchronized PILA pilas(int i){ // Acceso a la PILA de Billetes con denominacion i
         // Busqueda Binaria (Entrada: Denominacion, Salida: PILA)
         int c,bajo=0,alto=this.denom.length-1, cval;
         while (bajo<=alto) {            

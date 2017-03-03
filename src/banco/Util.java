@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import tda.LISTA;
 
 /**
  *
@@ -52,4 +53,16 @@ public class Util {
         }    
         return new_array;
     }
+    
+    public static synchronized Caja buscaCaja(LISTA cajas, int id){
+        for (int i = cajas.PRIMERO(); i < cajas.FIN(); i++) {
+            int idi = ((Caja)cajas.RECUPERA(i)).getID();
+            if (id==idi) {
+                return (Caja)cajas.RECUPERA(i);
+            }
+        }
+        return null;
+    }
+    
+
 }

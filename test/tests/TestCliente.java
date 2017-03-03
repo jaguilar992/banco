@@ -63,7 +63,7 @@ public class TestCliente {
 //        
         for (int i = 0; i < 1000; i++) {
             Cliente c = new Cliente();
-            System.out.println(c.transaccion().tipo());
+            System.out.println(c.transaccion().getNecesidad());
         }
 
     }

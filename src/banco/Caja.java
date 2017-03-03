@@ -116,28 +116,64 @@ public class Caja {
     public synchronized PILA prestar(String str){
         PILA prestamo = new PILA();
         LISTA cajas = this.reg.cajas();
-        int n = cajas.ANTERIOR(cajas.FIN());
         
+        int n = cajas.CUENTA(); // Total de cajas
+        // Obtener los ids de cajas excepto el de la caja actual
+        int[] ids=new int[n-1]; // Hay n-1 cajas de donde prestar
+        int j=0; // contador
+        for (int i = 0; i < n; i++) {
+            int id = ((Caja)cajas.RECUPERA(i)).getID();
+            if (this.ID!=id) {
+                ids[j]=id;
+                j++;
+            }
+        } // Array listo,Ej si estamos en la caja 1, el array será : {2,3,4,5}
+        ids=Util.rand_shuffle(ids); // Mezclar aleatoriamente para comenzar búsqueda de fondos en otras cajas
+        // El array mezclado podria ser: {5,2,3,4}
+        // Se comienza buscando en la caja con ID 5, luego si no hay fondos, sigue en la 2...
         
+        for (int id : ids) {
+            Caja caja = Util.buscaCaja(cajas, id);
+            prestamo=caja.billet().obtener(str);
+            if (prestamo!=null) {
+                deuda_str.INSERTA(str, deuda_str.FIN());// Añade deuda a pagar en el siguiente ciclo
+                deuda_i.INSERTA(id, deuda_i.FIN()); // El id de la caja a la que se le debe.
+                break;
+            }
+        }
         return prestamo;
     }
     
     public synchronized boolean pagar(){
-        String deuda = (String)deuda_str.RECUPERA(deuda_str.PRIMERO());
-        int monto_deuda = Billete.contar(deuda);
-        
-        PILA pago = wallet.obtener(deuda); // Prueba devolviendo los mismos billetes que se le prestaron
-        PILA pago2 = wallet.obtener(monto_deuda); // Prueba devolviendo el monto deglosado
-        int n_caja =(int)deuda_i.RECUPERA((int)deuda_i.PRIMERO())-1; // OJO, debido a la implementacion de RECUPERA, PRIMERO(L)->0, DEBERIA ARREGLARSE, PERO YA ESTAMOS SOBRE TIEMPO
-        Caja pagare = (Caja)this.reg.cajas().RECUPERA(n_caja);
-        if (pago!=null) {
-            pagare.billet().guardar(pago);
-            return true;
-        }else if (pago2!=null) {
-            pagare.billet().guardar(pago2);
-            return true;
+        if (deuda_str.CUENTA()>0) {
+            String deuda = (String) deuda_str.RECUPERA(deuda_str.PRIMERO());
+            int monto_deuda = Billete.contar(deuda);
+            PILA pago = wallet.obtener(deuda); // Prueba devolviendo los mismos billetes que se le prestaron
+            // id caja
+            int id = (int) deuda_i.RECUPERA((int) deuda_i.PRIMERO()); // El ID de la primera caja que prestó
+            Caja pagare = Util.buscaCaja(this.reg.cajas(), id); // Obtiene caja con ID: id
+            
+            // Si los pagos se pueden realizar
+            if (pago != null) {
+                pagare.billet().guardar(pago); // guardar en la caja que prestó
+                // Deuda está cancelada, borrar registros
+                deuda_str.SUPRIME(deuda_str.PRIMERO());
+                deuda_i.SUPRIME(deuda_i.PRIMERO());
+                return true;
+            } else{
+                PILA pago2 = wallet.obtener(monto_deuda); // Prueba devolviendo el monto deglosado
+                if (pago2 != null) {
+                    pagare.billet().guardar(pago2); // guardar en la caja que prestó
+                    // Deuda está cancelada, borrar registros
+                    deuda_str.SUPRIME(deuda_str.PRIMERO());
+                    deuda_i.SUPRIME(deuda_i.PRIMERO());
+                return true;
+                }else {
+                    return false; // No se pudo realizar el pago
+                }
+            }
         }else{
-            return false;
+            return true; // Se devuelve true si no hay pagos que realizar
         }
     }
 
@@ -174,10 +210,34 @@ public class Caja {
     public Registro getControl(){
         return this.reg;
     }
-
+    
+    public LISTA get_deudas(){
+        return this.deuda_str;
+    }
+    
+    public LISTA get_deudas_id(){
+        return this.deuda_i;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "Caja{" + ", ID:" + ID + " dinero: " + wallet.get_saldo()+" clientes"+clientes.CUENTA()+" }";
+    }
+
+    /**
+     * @param deuda_str the deuda_str to set
+     */
+    public void setDeuda_str(LISTA deuda_str) {
+        this.deuda_str = deuda_str;
+    }
+
+    /**
+     * @param deuda_i the deuda_i to set
+     */
+    public void setDeuda_i(LISTA deuda_i) {
+        this.deuda_i = deuda_i;
     }
     
     

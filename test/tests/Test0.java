@@ -19,6 +19,7 @@ public class Test0 {
 	System.out.println(lista);
 	lista.INSERTA(30,lista.FIN());
 	lista.INSERTA(30,lista.PRIMERO());
+        System.out.println("AQUI: "+lista.PRIMERO());
 	lista.INSERTA(5,lista.FIN());
 	lista.INSERTA(6,lista.PRIMERO());
 	System.out.println(lista);

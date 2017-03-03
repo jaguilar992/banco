@@ -81,6 +81,10 @@ public class LISTA{
 		System.err.println("ERROR en SUPRIME("+pos+"): posición no válida");
 	    }
 	}
+        
+        public int CUENTA(){ //AÑADIDA
+	    return this.FIN();
+	}
 
     @Override // util para impresion
     public String toString() {
