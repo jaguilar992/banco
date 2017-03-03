@@ -7,6 +7,7 @@ package tests;
 
 import banco.Caja;
 import banco.Util;
+import tda.PILA;
 
 /**
  *
@@ -32,8 +33,10 @@ public class Hilo extends Thread{
 //        }
         //synchronized(
         
-            for (int i = 0; i < 100; i++) {
-                caja.prestar("{1:1}");
+            for (int i = 0; i < 1500; i++) {
+                PILA dinero = new PILA();
+                dinero = caja.prestar("{10:2}");
+                caja.billet().guardar(dinero);
                 //sleep(100);
             }
         

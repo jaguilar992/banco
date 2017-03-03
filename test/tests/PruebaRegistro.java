@@ -65,7 +65,7 @@ public class PruebaRegistro {
         
         LISTA d = new LISTA();
         LISTA di = new LISTA();
-        for (int j = 0; j < 100; j++) {
+        for (int j = 0; j < 20; j++) {
             a.INSERTA(str,a.FIN());
             ai.INSERTA(5, ai.FIN());
             
