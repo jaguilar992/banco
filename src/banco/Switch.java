@@ -11,9 +11,9 @@ import java.util.Scanner;
  *
  * @author jaguilar992
  */
-public class ScannerReg extends Thread{
+public class Switch extends Thread{
     private final Registro reg;
-    public ScannerReg(Registro reg){
+    public Switch(Registro reg){
         this.reg = reg;
     }
 
@@ -24,7 +24,7 @@ public class ScannerReg extends Thread{
         while (!s.equals("FIN") && reg.is_abierto()) {            
             s=c.nextLine();
             if (reg.is_abierto()) {
-                System.out.println("¡El banco ha cerrado! .. Cerrando cajas...");
+                System.out.println("¡El banco ha cerrado! ... Cerrando cajas...");
             }
         }
         this.reg.cerrar();

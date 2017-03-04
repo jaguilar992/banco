@@ -15,6 +15,7 @@ import banco.dinero.Billetera;
  * @author jaguilar992
  */
 public class Test2 {
+    
     public static void main(String args[]){
 //        Billetera wallet = new Billetera();
 //        wallet.llenar(6880688);
@@ -36,6 +37,14 @@ public class Test2 {
         System.out.println(Util.randint(0, 0));
         System.out.println(Util.rand_float(0.5f, 6));
         System.out.println(true?6:7);
+                 System.out.println("\033[0m BLACK");
+        System.out.println("\033[31m RED");
+        System.out.println("\033[32m GREEN");
+        System.out.println("\033[33m YELLOW");
+        System.out.println("\033[34m BLUE");
+        System.out.println("\033[35m MAGENTA");
+        System.out.println("\033[36m CYAN");
+        System.out.println("\033[37m WHITE");
     }
     
 }

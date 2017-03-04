@@ -27,6 +27,9 @@ public class Registro {
     private int DN=0;
     private int RN=0;
     private int CN=0;
+    public static final String RESET = "\u001B[0m";
+    public static final String CYAN = "\033[36m";
+    public static final String RED = "\033[35m";
     
     public Registro(){}
     
@@ -34,15 +37,15 @@ public class Registro {
         Registro.atentido++;       
         switch(t.tipo()){
             case 'D':
-                if(log) System.out.println("Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto());
+                if(log) System.out.println(CYAN+"Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto()+RESET);
                 D+=t.getMonto();
                 DN++;
             break;case 'R':
-                if(log) System.out.println("Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto()+" : "+t.getNecesidad());
+                if(log) System.out.println(CYAN+"Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto()+" : "+t.getNecesidad()+RESET);
                 R+=t.getMonto();
                 RN++;
             break; case 'C':
-                if(log) System.out.println("Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto()+" : "+t.getNecesidad());
+                if(log) System.out.println(CYAN+"Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto()+" : "+t.getNecesidad()+RESET);
                 C+=t.getMonto();
                 CN++;
             break;default:
@@ -54,15 +57,15 @@ public class Registro {
         Registro.clientes_no_caja++;
         switch (t.tipo()) {
             case 'D':
-                if(log) System.out.println("#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto());
+                if(log) System.out.println(RED+"#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto()+RESET);
                 D += t.getMonto();
                 break;
             case 'R':
-                if(log) System.out.println("#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto() + " : " + t.getNecesidad());
+                if(log) System.out.println(RED+"#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto() + " : " + t.getNecesidad()+RESET);
                 R += t.getMonto();
                 break;
             case 'C':
-                if(log) System.out.println("#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto() + " : " + t.getNecesidad());
+                if(log) System.out.println(RED+"#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto() + " : " + t.getNecesidad()+RESET);
                 C += t.getMonto();
                 break;
             default:
