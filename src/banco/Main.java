@@ -64,7 +64,7 @@ public class Main {
             if (!colocado) {
                 banco.no_atendido();
             }
-            float cli_en = Util.rand_float(Registro.DELAY_MIN, Registro.DELAY_MIN); // Aparicion del siguiente cliente
+            float cli_en = Util.rand_float(Registro.DELAY_MIN, Registro.DELAY_MAX); // Aparicion del siguiente cliente
             j++;
             Reloj.sleep(cli_en);
         }
@@ -98,7 +98,13 @@ public class Main {
         System.out.println(caja4);
         System.out.println(caja5);
         
-        System.out.println("\n"+banco);        
+        System.out.println("\n"+banco);
+        
+       // System.out.println(caja1.get_deudas());
+       // System.out.println(caja2.get_deudas());
+       // System.out.println(caja3.get_deudas());
+       // System.out.println(caja4.get_deudas());
+       // System.out.println(caja5.get_deudas());
     }
 }
 

@@ -18,6 +18,7 @@ public class Reloj {
     public static void sleep(float ms) {
         try {
             Thread.sleep((long) ms*Reloj.scala);
+            //System.err.println((long) ms*Reloj.scala);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }

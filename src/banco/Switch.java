@@ -23,9 +23,6 @@ public class Switch extends Thread{
         String s="O";
         while (!s.equals("FIN") && reg.is_abierto()) {            
             s=c.nextLine();
-            if (reg.is_abierto()) {
-                System.out.println("¡El banco ha cerrado! ... Cerrando cajas...");
-            }
         }
         this.reg.cerrar();
     }
