@@ -69,6 +69,7 @@ public class Main {
             Reloj.sleep(cli_en);
         }
         banco.cerrar(); // Cerrar el banco xD
+        System.out.println("¡El banco ha cerrado! ... Cerrando cajas...");
         
         hilo1.join();// Esperar que los hilos hijo terminen
         hilo2.join();

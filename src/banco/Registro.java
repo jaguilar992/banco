@@ -86,19 +86,23 @@ public class Registro {
         int WAIT = 20;
         int n = this.cajas.FIN(); // Tamaño de la lista de cajas
         int caja_i, cuenta_i; // Caja seleccionada para agregar Cliente c (Aleatoriamente)
-        do{
-            caja_i = Util.randint(n-1); // Random
-            espera++;
-            cuenta_i = ((Caja)cajas.RECUPERA(caja_i)).cuenta_cola();
-        }while(cuenta_i>=20 && espera<WAIT); 
-        // Revisará WAIT veces las cajas (repeticiones) aleatoriamente antes de desistir
-        // Ya que podria haber liberacion de algun cupo
+        if (n>0) {
+            do {
+                caja_i = Util.randint(n - 1); // Random
+                espera++;
+                cuenta_i = ((Caja) cajas.RECUPERA(caja_i)).cuenta_cola();
+            } while (cuenta_i >= 20 && espera < WAIT);
+            // Revisará WAIT veces las cajas (repeticiones) aleatoriamente antes de desistir
+            // Ya que podria haber liberacion de algun cupo
 
-        if (espera>=WAIT) { // Se alcanzo limite de espera, el cliente no se atenderá en cola
-            return false;
+            if (espera >= WAIT) { // Se alcanzo limite de espera, el cliente no se atenderá en cola
+                return false;
+            } else {
+                ((Caja) cajas.RECUPERA(caja_i)).agrega_cliente(c); // Agregra cliente a la caja i
+                return true;
+            }
         }else{
-            ((Caja)cajas.RECUPERA(caja_i)).agrega_cliente(c); // Agregra cliente a la caja i
-            return true;
+            return false;
         }
     }
     
