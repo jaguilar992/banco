@@ -17,11 +17,11 @@ public class HiloCaja extends Thread{
 
     @Override
     public void run() {
-        while (caja.getControl().is_abierto() || caja.cuenta_cola()>0){ //|| caja.get_deudas().CUENTA()>0) {            
+        while (caja.getControl().is_abierto() || caja.cuenta_cola()>0 || caja.get_deudas().CUENTA()>0) {            
             caja.pagar(); // Si es que debe
             float duracion = Util.rand_float(Caja.DELAY_MIN, Caja.DELAY_MAX);
             if (caja.cuenta_cola()!=0) {
-                caja.atiende_cliente();
+                boolean atencion = caja.atiende_cliente();
                 Reloj.sleep(duracion); //Reloj
             }
         }
