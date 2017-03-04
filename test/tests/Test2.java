@@ -8,7 +8,6 @@ package tests;
 
 import banco.Cliente;
 import banco.Util;
-import banco.dinero.Billetera;
 
 /**
  *

@@ -27,7 +27,7 @@ public class Caja {
     public static final float DELAY_MIN=4.8f; // MINUTOS
     private int ID;
     private boolean abierto;
-    private Registro reg;
+    private Banco reg;
     private LISTA deuda_str = new LISTA(); // Aqui se agregaran las deudas de la caja actual hacia las demas (Cadena necesidad)
     private LISTA deuda_i = new LISTA(); // Numero de caja a la que se le debe en deuda_i
     
@@ -203,11 +203,11 @@ public class Caja {
         return this.abierto;
     }
     
-    public void setControl(Registro reg){
+    public void setBanco(Banco reg){
         this.reg=reg;
     }
     
-    public Registro getControl(){
+    public Banco banco(){
         return this.reg;
     }
     
@@ -223,7 +223,7 @@ public class Caja {
     
     @Override
     public String toString() {
-        return "Caja{" + "ID:" + ID + ", Dinero: " + wallet.get_saldo()+", Clientes en cola: "+clientes.CUENTA()+" }";
+        return "Caja{" + "ID:" + ID + ", Dinero: " + wallet.dinero()+", Clientes en cola: "+clientes.CUENTA()+" }";
     }
 
     /**

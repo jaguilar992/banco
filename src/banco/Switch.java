@@ -12,8 +12,8 @@ import java.util.Scanner;
  * @author jaguilar992
  */
 public class Switch extends Thread{
-    private final Registro reg;
-    public Switch(Registro reg){
+    private final Banco reg;
+    public Switch(Banco reg){
         this.reg = reg;
     }
 

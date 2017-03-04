@@ -11,7 +11,7 @@ import tda.PILA;
 public class Test1 {
     public static void main(String args[]){
         Billetera wallet = new Billetera();
-//        PILA p= wallet.pilas(500);
+//        PILA p= wallet.get_pila_billetes_i(500);
 //        
 //        
 //        Billete [] no = new Billete[10];
@@ -39,7 +39,7 @@ public class Test1 {
           //System.out.println(wallet);
           //wallet.guardar(nuevos);
           //System.out.println(wallet);
-          //System.out.println(wallet.get_saldo());
+          //System.out.println(wallet.dinero());
           
        //PILA nuevos = new PILA();   
        //nuevos.METE(new Billete(3));

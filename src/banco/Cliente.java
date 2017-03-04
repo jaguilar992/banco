@@ -42,7 +42,7 @@ public class Cliente {
     
     
     public int dinero(){
-        return wallet.get_saldo();
+        return wallet.dinero();
     }
     
     public Billetera billet(){
@@ -80,8 +80,8 @@ public class Cliente {
     private void set_deposito(){// Ajusta el deposito en transaccion trans de cliente
         PILA deposito = new PILA(); // Pila a depositar
         int [] denom = {1,2,5,10,20,50,100,500}; 
-        for (int i=denom.length-1; i>=0; i--) { // Revisar las pilas por denominaciones
-            PILA actual = wallet.pilas(denom[i]);
+        for (int i=denom.length-1; i>=0; i--) { // Revisar las get_pila_billetes_i por denominaciones
+            PILA actual = wallet.get_pila_billetes_i(denom[i]);
             if (!actual.VACIA()) { // Si la pila actual no está vacía
                 int total_actual = actual.CUENTA(); // del total de billetes
                 int pick = Util.randint(1,total_actual); // Elige al menos 1
@@ -104,9 +104,9 @@ public class Cliente {
         do {
             pick = Util.randint(1,denom.length-1); // Seleccion al azar de elemento k, iterador de denominacion
             denom_pick = denom[pick];              // Seleccion de denominacion de billetes a cambiar
-        }while (Billete.contar(wallet.pilas(denom_pick))<500); // Limita el monto minimo de cambio a 500
+        }while (Billete.contar(wallet.get_pila_billetes_i(denom_pick))<500); // Limita el monto minimo de cambio a 500
         
-        int total = wallet.pilas(denom_pick).CUENTA(); // Cuenta el total de billetes disponibles para cambiar
+        int total = wallet.get_pila_billetes_i(denom_pick).CUENTA(); // Cuenta el total de billetes disponibles para cambiar
         int n_pick; // GUARDARA Seleccion al azar de la cantidad de billetes a cambiar
         // En el peor de los casos, el total será 100 Billetes de 500
         // Dando un total para el limite de cambio de 50000 (igual que retiro)
@@ -117,8 +117,8 @@ public class Cliente {
         
         // LLENADO DE PILA A CAMBIAR
         for (int i = 0; i < n_pick; i++) {
-            dinero.METE(wallet.pilas(denom_pick).TOPE());
-            wallet.pilas(denom_pick).SACA();
+            dinero.METE(wallet.get_pila_billetes_i(denom_pick).TOPE());
+            wallet.get_pila_billetes_i(denom_pick).SACA();
         }
         
         // Denominacion elegida para el cambio menor a denom_pick

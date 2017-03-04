@@ -44,7 +44,7 @@ public class Hilo extends Thread{
         
             //System.out.println("Caja"+caja.getID()+" "+caja.get_deudas());
             System.out.println("Caja"+caja.getID()+" "+caja.get_deudas_id()+ "l:"+l);
-            //System.out.println(((Caja)Util.buscaCaja(caja.getControl().cajas(), 5)).billet());
+            //System.out.println(((Caja)Util.buscaCaja(caja.banco().cajas(), 5)).billet());
         //)
     }       
 }
