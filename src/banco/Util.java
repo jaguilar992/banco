@@ -26,6 +26,10 @@ public class Util {
         return Util.randint(0, h);
     }
     
+    public static float rand_float(float l, float h ){
+        return r.nextFloat()*(h-l) + l;
+    }
+    
     
     public static boolean randbool(){
         return Util.randint(0, 1)==1;

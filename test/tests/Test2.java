@@ -34,6 +34,8 @@ public class Test2 {
         //System.out.println(n.transaccion().getNecesidad());
       //  System.out.println(n.billet());
         System.out.println(Util.randint(0, 0));
+        System.out.println(Util.rand_float(0.5f, 6));
+        System.out.println(true?6:7);
     }
     
 }

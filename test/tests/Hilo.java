@@ -6,6 +6,7 @@
 package tests;
 
 import banco.Caja;
+import banco.Reloj;
 import banco.Util;
 import tda.PILA;
 
@@ -32,27 +33,18 @@ public class Hilo extends Thread{
 //            this.sleep(50);
 //        }
         //synchronized(
-        
-            for (int i = 0; i < 1500; i++) {
-                PILA dinero = new PILA();
-                dinero = caja.prestar("{10:2}");
+            
+            int l = Util.randint(0, 100);
+            for (int i = 0; i < l ; i++) {
+                System.out.println(caja.getID()+" i:"+i);
+                PILA dinero = caja.prestar("{10:2}");
                 caja.billet().guardar(dinero);
-                //sleep(100);
+                Reloj.sleep(100);
             }
         
             //System.out.println("Caja"+caja.getID()+" "+caja.get_deudas());
-            System.out.println("Caja"+caja.getID()+" "+caja.get_deudas_id());
+            System.out.println("Caja"+caja.getID()+" "+caja.get_deudas_id()+ "l:"+l);
             //System.out.println(((Caja)Util.buscaCaja(caja.getControl().cajas(), 5)).billet());
         //)
-    }
-    
-    private void sleep(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
-    
-            
+    }       
 }

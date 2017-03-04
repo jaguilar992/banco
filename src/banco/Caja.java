@@ -43,13 +43,13 @@ public class Caja {
              return false;
          }
      }
-    public boolean atiende_cliente(Cliente a){
+    public boolean atiende_cliente(){
         Cliente client = (Cliente)clientes.FRENTE();
         Transaccion next = client.transaccion();
         switch(next.tipo()){
             case 'D':{
-                client.billet().guardar(next.getDinero());
-                this.reg.atendido(next);
+                wallet.guardar(next.getDinero());
+                this.reg.atendido(this,next);
                 this.clientes.QUITA_DE_COLA();
                 return true;
             }
@@ -60,18 +60,18 @@ public class Caja {
                 if (retiro==null) {
                     PILA dinero = this.prestar(next.getNecesidad());
                     if (dinero==null) {
-                        this.reg.no_atendido(next);
+                        this.reg.no_atendido(this,next);
                         this.clientes.QUITA_DE_COLA();
                         return false;
                     }else{
                         client.billet().guardar(dinero);
-                        this.reg.atendido(next);
+                        this.reg.atendido(this,next);
                         this.clientes.QUITA_DE_COLA();
                         return true;
                     }
                 }else{
                     client.billet().guardar(retiro);
-                    this.reg.atendido(next);
+                    this.reg.atendido(this,next);
                     this.clientes.QUITA_DE_COLA();
                     return true;
                 }
@@ -82,20 +82,20 @@ public class Caja {
                 if (cambio== null) {
                     PILA dinero = this.prestar(next.getNecesidad());
                     if (dinero == null) {
-                        this.reg.no_atendido(next);
+                        this.reg.no_atendido(this,next);
                         this.clientes.QUITA_DE_COLA();
                         return false;
                     } else {
                         wallet.guardar(next.getDinero());
                         client.billet().guardar(dinero);
-                        this.reg.atendido(next);
+                        this.reg.atendido(this,next);
                         this.clientes.QUITA_DE_COLA();
                         return true;
                     }
                 } else {
                     wallet.guardar(next.getDinero());
                     client.billet().guardar(cambio);
-                    this.reg.atendido(next);
+                    this.reg.atendido(this,next);
                     this.clientes.QUITA_DE_COLA();
                     return true;
                 }
@@ -223,7 +223,7 @@ public class Caja {
     
     @Override
     public String toString() {
-        return "Caja{" + ", ID:" + ID + " dinero: " + wallet.get_saldo()+" clientes"+clientes.CUENTA()+" }";
+        return "Caja{" + "ID:" + ID + ", Dinero: " + wallet.get_saldo()+", Clientes en cola: "+clientes.CUENTA()+" }";
     }
 
     /**

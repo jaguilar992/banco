@@ -15,18 +15,59 @@ import tda.LISTA;
 public class Registro {
     private static  int clientes_no; // Contador de clientes no atendidos desde entrada.
     private static int clientes_no_caja; // Contador de clientes no atendidos desde la caja.
-    public static final float DELAY_MIN = 2f; // MINUTOS
-    public static final float DELAY_MAX = 5f; // MINUTOS
+    private static int atentido;
+    public static final float DELAY_MIN = 1f; // MINUTOS
+    public static final float DELAY_MAX = 3f; // MINUTOS
     private final LISTA cajas = new LISTA();
     private boolean abierto;
+    private boolean log;
+    private int D=0;
+    private int R=0;
+    private int C=0;
+    private int DN=0;
+    private int RN=0;
+    private int CN=0;
     
     public Registro(){}
     
-    public synchronized void atendido(Transaccion t){
+    public synchronized void atendido(Caja caja,Transaccion t){
+        Registro.atentido++;       
+        switch(t.tipo()){
+            case 'D':
+                if(log) System.out.println("Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto());
+                D+=t.getMonto();
+                DN++;
+            break;case 'R':
+                if(log) System.out.println("Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto()+" : "+t.getNecesidad());
+                R+=t.getMonto();
+                RN++;
+            break; case 'C':
+                if(log) System.out.println("Caja"+caja.getID()+":: "+t.tipo()+" : "+t.getMonto()+" : "+t.getNecesidad());
+                C+=t.getMonto();
+                CN++;
+            break;default:
+            break;
+        }
     }
     
-    public synchronized void no_atendido(Transaccion t){
+    public synchronized void no_atendido(Caja caja,Transaccion t){
         Registro.clientes_no_caja++;
+        switch (t.tipo()) {
+            case 'D':
+                if(log) System.out.println("#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto());
+                D += t.getMonto();
+                break;
+            case 'R':
+                if(log) System.out.println("#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto() + " : " + t.getNecesidad());
+                R += t.getMonto();
+                break;
+            case 'C':
+                if(log) System.out.println("#Caja" + caja.getID() + ":: " + t.tipo() + " : " + t.getMonto() + " : " + t.getNecesidad());
+                C += t.getMonto();
+                break;
+            default:
+                break;
+        }
     }
     
     public void no_atendido(){
@@ -82,6 +123,24 @@ public class Registro {
     public Caja caja_i(int i){
         return (Caja)this.cajas.RECUPERA(i);
     }
+    
+    public void log(boolean log){
+        this.log=log;
+    }
+
+    @Override
+    public String toString() {
+        return "Registro{\n"+
+                "Total Atendidos: " +Registro.atentido+"\n"+
+                "Transacciones No realizadas: "+ Registro.clientes_no_caja+"\n"+
+                "Clientes No atendidos: "+ Registro.clientes_no+"\n"+
+                "Total Dinero Retiros ("+RN+"): "+R+"\n"+
+                "Total Dinero Depositos ("+DN+"):"+D+"\n"+
+                "Total Dinero Cambios ("+CN+"): "+C+"\n"+
+                "}";
+    }
+    
+    
 }
 
 

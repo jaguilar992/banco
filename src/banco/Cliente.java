@@ -56,12 +56,12 @@ public class Cliente {
     private void set_retiro(){// Ajusta el retiro en transaccion trans de cliente
         String necesidad="{"; // Cadena que se le pasa a Retiro, con el numero de billetes por cada denominacion.
         // De la forma: {den_1:cant_1,den_2:cant_2, ... , den_n:cant_n}
-        int limit_retiro = 20000; // El Cliente podrá retirar hasta 20000 unidades de dinero
+        int limit_retiro = 50000; // El Cliente podrá retirar hasta 20000 unidades de dinero
         this.monto=Util.randint(500, limit_retiro); // Se escoge aleatoriamente un monto
         int cambio_1=(int) (Util.randint(70,100)*this.monto/100); // Al menos del 70% de este dinero
         int [] denom = {500,100,50,20}; // el Cliente podra elegir si se le dan billetes de 500,100,50 o 20
-        int[] billete_group = Util.rand_shuffle(denom); // Mezcla el arreglo denom para elegir primer billete a desglosar 500 o 100
-        for (int i : billete_group) { // Para cada denominccion desglosa
+        int[] billete_group = Util.rand_shuffle(denom); // Mezcla el arreglo denom para elegir primer billete a desglosar (Prioritario)
+        for (int i : billete_group) { // Para cada denominacion desglosa
             if (cambio_1>=i) {
                 //Desglose entre 500, 100, 50 o 20
                 int cantb = (cambio_1 / i); // Entregara cantb de i (500, 100, 50 o 20)
@@ -99,7 +99,7 @@ public class Cliente {
 
     private void set_cambio(){
         PILA dinero = new PILA();
-        int [] denom = {20,50,100,500}; //El menor billete que devolvera caja sera 20 / Parece lo más lógico
+        int [] denom = {1,2,5,10,20,50,100,500}; //El menor billete que devolvera caja sera 2
         int pick,denom_pick;
         do {
             pick = Util.randint(1,denom.length-1); // Seleccion al azar de elemento k, iterador de denominacion
@@ -108,10 +108,10 @@ public class Cliente {
         
         int total = wallet.pilas(denom_pick).CUENTA(); // Cuenta el total de billetes disponibles para cambiar
         int n_pick; // GUARDARA Seleccion al azar de la cantidad de billetes a cambiar
-        // En el peor de los casos, el total será 40 Billetes de 500
-        // Dando un total para el limite de cambio de 20000 (igual que retiro)
-        if (total>=40) 
-            n_pick = Util.randint(500/denom_pick,40);
+        // En el peor de los casos, el total será 100 Billetes de 500
+        // Dando un total para el limite de cambio de 50000 (igual que retiro)
+        if (total>=100) 
+            n_pick = Util.randint(500/denom_pick,100);
         else
             n_pick = Util.randint(500/denom_pick,total);
         
