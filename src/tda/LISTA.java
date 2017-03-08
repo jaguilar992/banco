@@ -74,9 +74,10 @@ public class LISTA{
 	    if(pos>=this.PRIMERO() && pos<this.FIN()){ // Verificar que suprimir sea valida
 		for (int i = pos; i < this.ANTERIOR(this.FIN()); i++) {
 			arrLista[i]=getArrLista()[i+1]; // Corre los elementos hacia atrás, desde la pos+1 hasta fin
-		    }
-		    arrLista[this.ANTERIOR(this.FIN())]=null; // Resetea la ultima cubeta a null
-		    this.ultimo--;
+		    }   
+                arrLista[this.ANTERIOR(this.FIN())]=null; // Resetea la ultima cubeta a null
+                this.ultimo--;
+		    
 	    }else{
 		System.err.println("ERROR en SUPRIME("+pos+"): posición no válida");
 	    }

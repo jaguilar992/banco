@@ -28,8 +28,8 @@ public class Banco {
     private int RN=0;
     private int CN=0;
     public static final String RESET = "\u001B[0m";
-    public static final String CYAN = "\033[36m";
-    public static final String YELLOW = "\033[33m";
+    public static final String GOOD = "\033[32m";
+    public static final String BAD = "\033[35m";
     public static final String GREEN = "\033[32m";
     
     public Banco(){}
@@ -38,15 +38,15 @@ public class Banco {
         Banco.atentido++;       
         switch(t.tipo()){
             case 'D':
-                if(log) System.out.println(CYAN+"Caja"+caja.getID()+":: Depósito: "+t.getMonto()+RESET);
+                if(log) System.out.println(GOOD+"Caja"+caja.getID()+":: Depósito: "+t.getMonto()+RESET);
                 D+=t.getMonto();
                 DN++;
             break;case 'R':
-                if(log) System.out.println(CYAN+"Caja"+caja.getID()+":: Retiro: "+t.getMonto()+" : "+t.getNecesidad()+RESET);
+                if(log) System.out.println(GOOD+"Caja"+caja.getID()+":: Retiro: "+t.getMonto()+" : "+Util.clean(t.getNecesidad())+RESET);
                 R+=t.getMonto();
                 RN++;
             break; case 'C':
-                if(log) System.out.println(CYAN+"Caja"+caja.getID()+":: Cambio : "+t.getMonto()+" : "+t.getNecesidad()+RESET);
+                if(log) System.out.println(GOOD+"Caja"+caja.getID()+":: Cambio : "+t.getMonto()+" : "+Util.clean(t.getNecesidad())+RESET);
                 C+=t.getMonto();
                 CN++;
             break;default:
@@ -58,13 +58,13 @@ public class Banco {
         Banco.clientes_no_caja++;
         switch (t.tipo()) {
             case 'D':
-                if(log) System.out.println(YELLOW+"## Caja" + caja.getID() + ":: Depósito: " + t.getMonto()+RESET);
+                if(log) System.out.println(BAD+"## Caja" + caja.getID() + ":: Depósito: " + t.getMonto()+RESET);
                 break;
             case 'R':
-                if(log) System.out.println(YELLOW+"## Caja" + caja.getID() + ":: Retiro: " + t.getMonto() + " : " + t.getNecesidad()+RESET);
+                if(log) System.out.println(BAD+"## Caja" + caja.getID() + ":: Retiro: " + t.getMonto() + " : " + Util.clean(t.getNecesidad())+RESET);
                 break;
             case 'C':
-                if(log) System.out.println(YELLOW+"## Caja" + caja.getID() + ":: Cambio: " + t.getMonto() + " : " + t.getNecesidad()+RESET);
+                if(log) System.out.println(BAD+"## Caja" + caja.getID() + ":: Cambio: " + t.getMonto() + " : " + Util.clean(t.getNecesidad())+RESET);
                 break;
             default:
                 break;

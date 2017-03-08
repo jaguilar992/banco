@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import tda.LISTA;
 
 /**
@@ -68,5 +70,44 @@ public class Util {
         return null;
     }
     
+    public static String clean(String nec){
+        // FORMATEO Y limpieza de cadena str
+        // Evitar {50:320,20:1,}{500:3,100:4,50:1,20:1,10:1,1:1,}
+        // En su lugar {500:3, 100:4, 50:321, 20:1, 10:1, 1:1}
+        int [] denom = {1,2,5,10,20,50,100,500};
+        int [] values = new int[denom.length];
+        
+        nec=nec.replaceAll("\\s", "");
+        String obtenido="{";
+        String regexp = "[0-9]+\\s*\\:\\s*[0-9]+";
+        Pattern p  = Pattern.compile(regexp);
+        Matcher m = p.matcher(nec);
+        while(m.find()){
+            String pair = m.group();
+            int den = Integer.parseInt(pair.split(":")[0]);
+            int cant = Integer.parseInt(pair.split(":")[1]);
+            int i = Util.search(denom, den);
+            if (i!=-1) {
+                values[i]+=(cant);
+            }
+        }
+        
+        for (int i = denom.length-1; i >=0; i--) {
+            if (values[i]>0) {
+                obtenido+=(denom[i]+":"+values[i]+",");
+            }
+        }
+        
+        return obtenido+"}";
+    }
+    
+    public static int search(int[]array , int n){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]==n) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
 }

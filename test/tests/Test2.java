@@ -44,6 +44,10 @@ public class Test2 {
         System.out.println("\033[35m MAGENTA");
         System.out.println("\033[36m CYAN");
         System.out.println("\033[37m WHITE");
+        
+        String nec ="{50:320,20:1,}{500:3,100:4,50:1,20:1,10:1,1:1,}";
+        System.out.println(nec);
+        System.out.println(Util.clean(nec));
     }
     
 }

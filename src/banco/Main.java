@@ -17,7 +17,7 @@ public class Main {
         System.out.println("--------- Agencia Bancaria ---------");
         
         Banco banco = new Banco();
-        int mins = 1;
+        int mins = 1; // DURACION DE SIMULACION (EN MINUTOS, ENTERO)
         Reloj reloj = new Reloj(mins*60*1000/480);
         banco.abrir();
 
@@ -77,20 +77,21 @@ public class Main {
         hilo5.start();
         
         // LOOP TEMPORAL, Creacion de nuevos clientes.
+        // El banco dejará de "recibir" clientes pasadas 8 iteraciones
+        // 8 "horas" de trabajo
         int j =0;
         while(j<480 && banco.is_abierto()){
-            Cliente cli = banco.nuevo_cliente();
             // Cada minuto, apareceran entre 
             for (int i = 0; i < Util.randint(1,2); i++) {
+                Cliente cli = banco.nuevo_cliente();
                 // LLegaran 1 o 2 clientes cada minuto, en total son 480 minutos de trabajo
                 boolean colocado = banco.cliente_a_caja(cli);
                 if (!colocado) {
                     banco.no_atendido();
                 }
             }
-            float cli_en=1f; // Creacion de clientes cada minuto
             j++;
-            Reloj.sleep(cli_en);
+            Reloj.sleep(1f); // Creacion de clientes cada minuto
         }
         banco.cerrar(); // Cerrar el banco xD
         System.out.println("¡El banco ha cerrado! ... Cerrando cajas...");
